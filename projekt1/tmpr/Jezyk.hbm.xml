@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-10-24 09:51:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="classes.Jezyk" table="JEZYK">
+        <id name="id" type="int">
+            <column name="ID_JEZYK" />
+            <generator class="native" />
+        </id>
+        <property name="stopienZnaj" type="int">
+            <column name="STOPIENZNAJ" />
+        </property>
+        <property name="uwagi" type="int">
+            <column name="UWAGI" />
+        </property>
+        <many-to-one name="programista" class="classes.Programista" fetch="join">
+            <column name="PROGRAMISTA" />
+        </many-to-one>
+        <many-to-one name="jezykProg" class="classes.JezykProg" fetch="join">
+            <column name="JEZYKPROG" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

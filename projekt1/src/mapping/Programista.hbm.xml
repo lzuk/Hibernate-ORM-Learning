@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-10-24 09:51:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <joined-subclass extends="classes.Osoba" lazy="false" name="classes.Programista" table="PROGRAMISTA">
+    <key foreign-key="FK_OSOBA_PROGR">
+      <column name="ID_PROGRAMISTA"/>
+    </key>
+    <set access="field" inverse="false" lazy="true" name="jezyki" table="JEZYK" cascade="save-update">
+      <key foreign-key="FK_PROGR_JEZYK">
+        <column name="ID_PROGRAMISTA"/>
+      </key>
+      <one-to-many class="classes.Jezyk"/>
+    </set>
+    <set access="field" inverse="false" lazy="true" name="zatrudnienie" table="ZATRUDNIENIE" cascade="save-update">
+      <key foreign-key="FK_PROGR_ZAT">
+        <column name="ID_PROGRAMISTA"/>
+      </key>
+      <one-to-many class="classes.Zatrudnienie"/>
+    </set>
+  </joined-subclass>
+</hibernate-mapping>

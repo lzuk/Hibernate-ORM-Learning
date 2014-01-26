@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_6" inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="Hibernate 4.2.2-4.2.2" value="project"/>
+		<level name="mysql-connector-java-5.1" value="project"/>
+		<level name="mysql-connector-java-5.1.27-bin" value="project"/>
+	</levels>
+</component>
