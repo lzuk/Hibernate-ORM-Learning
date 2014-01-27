@@ -73,6 +73,25 @@ public class Queries {
         }
         
         //***********************Zapytanie 2**********************************
+        System.out.println("\n2.Nazwisko osoby ktora jest kierownikiem projektu MPZproj");
+        switch (queryType ){
+            case Annotations:
+                criteria2 = session.createCriteria(classesAnn.Kierownik.class);
+                break;
+            case XML:
+                criteria2 = session.createCriteria(classes.Kierownik.class);
+                break;
+            default:
+                return;
+        }
+        criteria2 = criteria2.createAlias("projekty", "p");
+        criteria2 = criteria2.add(Restrictions.like("p.nazwa", "MPZproj"));
+        criteria2 = criteria2.setProjection(Projections.property("nazwisko"));
+        
+        System.out.println(criteria2.list().get(0));
+        
+        
+        
         //***********************Zapytanie 3**********************************
         System.out.println("\n3.Ilość Projektów które zostały całkowicie przeprowadzone (rozpoczete i zakonczone) w 2013 roku");
         switch (queryType ){
@@ -93,7 +112,7 @@ public class Queries {
         
         System.out.println("Ilość projektów: " + criteria3.list().size());    
     }
-    enum QueryType{
+    public enum QueryType{
         XML,
         Annotations
     }
