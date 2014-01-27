@@ -14,10 +14,8 @@ xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-configuration hiberna
   <property name="hibernate.connection.pool_size">5</property>
   <property name="hibernate.generate_statistics">true</property>
   <property name="hibernate.current_session_context_class">thread</property>
-  <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.format_sql">true</property>
-  <property name="hibernate.default_schema">hiberdb2</property>
  </session-factory>
 </hibernate-configuration>
