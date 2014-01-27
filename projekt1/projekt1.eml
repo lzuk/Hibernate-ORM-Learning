@@ -6,5 +6,7 @@
 		<level name="Hibernate 4.2.2-4.2.2" value="project"/>
 		<level name="mysql-connector-java-5.1" value="project"/>
 		<level name="mysql-connector-java-5.1.27-bin" value="project"/>
+		<level name="antlr-2.7.7" value="project"/>
+		<level name="joda-time-2.3" value="project"/>
 	</levels>
 </component>

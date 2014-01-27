@@ -1,10 +1,6 @@
 package testPackage;
 
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import classesAnn.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,18 +8,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import classesAnn.Jezyk;
-import classesAnn.JezykProg;
-import classesAnn.Kierownik;
-import classesAnn.Osoba;
-import classesAnn.Programista;
-import classesAnn.Projekt;
-import classesAnn.Zapotrzebowanie;
-import classesAnn.Zatrudnienie;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TestClassAnn {
 
-	private static final SessionFactory SESSION_FACTORY;
+    private static final SessionFactory SESSION_FACTORY;
 
     static {
         Configuration config = new Configuration().configure();
@@ -36,14 +27,14 @@ public class TestClassAnn {
         config.addAnnotatedClass(Projekt.class);
         config.addAnnotatedClass(Zapotrzebowanie.class);
         config.addAnnotatedClass(Zatrudnienie.class);
-        
+
         ServiceRegistryBuilder registryBuilder = new ServiceRegistryBuilder();
         registryBuilder.applySettings(config.getProperties());
         ServiceRegistry serviceRegistry = registryBuilder.buildServiceRegistry();
         SESSION_FACTORY = config.buildSessionFactory(serviceRegistry);
     }
-    
-    private static void createProjekt(){
+
+    private static void createProjekt() {
         Session session = SESSION_FACTORY.openSession();
         Transaction tx = session.beginTransaction();
         Projekt projekt = new Projekt();
@@ -83,20 +74,20 @@ public class TestClassAnn {
         Set<Zapotrzebowanie> zapotrzebowanieP = new HashSet<Zapotrzebowanie>();
         zapotrzebowanieP.add(zapotrzebowanie);
         projekt.setZapotrzebowanie(zapotrzebowanieP);
-        
+
         session.save(projekt);
         tx.commit();
         session.close();
-    }    
-    
-    
-	public static void main(String[] args) {
-		//createProjekt();
-                    Session session = SESSION_FACTORY.openSession();
+    }
+
+
+    public static void main(String[] args) {
+        //createProjekt();
+        Session session = SESSION_FACTORY.openSession();
         Queries.printHQL(session);
-        
-        Queries.printKryterialne(session);            
+
+        Queries.printKryterialne(session);
         session.close();
-        }
+    }
 
 }

@@ -22,7 +22,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 
 public class TestClass {
-	private static final SessionFactory SESSION_FACTORY;
+    private static final SessionFactory SESSION_FACTORY;
 
     static {
         File mappingDir = new File("src\\mapping");
@@ -35,7 +35,7 @@ public class TestClass {
         ServiceRegistry serviceRegistry = registryBuilder.buildServiceRegistry();
         SESSION_FACTORY = config.buildSessionFactory(serviceRegistry);
     }
-    
+
     private static void createOsoby() {
         Session session = SESSION_FACTORY.openSession();
         Transaction tx = session.beginTransaction();
@@ -50,7 +50,8 @@ public class TestClass {
         tx.commit();
         session.close();
     }
-    private static void createProjekt(){
+
+    private static void createProjekt() {
         Session session = SESSION_FACTORY.openSession();
         Transaction tx = session.beginTransaction();
         Projekt projekt = new Projekt();
@@ -90,20 +91,19 @@ public class TestClass {
         Set<Zapotrzebowanie> zapotrzebowanieP = new HashSet<Zapotrzebowanie>();
         zapotrzebowanieP.add(zapotrzebowanie);
         projekt.setZapotrzebowanie(zapotrzebowanieP);
-        
+
         session.save(projekt);
         tx.commit();
         session.close();
-    }    
-    
-    public static void main(String [] args)
-    {
-    	//createOsoby();
+    }
+
+    public static void main(String[] args) {
+        //createOsoby();
         //createProjekt();
         Session session = SESSION_FACTORY.openSession();
         Queries.printHQL(session);
-        
-        Queries.printKryterialne(session);            
+
+        Queries.printKryterialne(session);
         session.close();
     }
 }
