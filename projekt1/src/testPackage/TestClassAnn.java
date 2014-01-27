@@ -92,28 +92,11 @@ public class TestClassAnn {
     
 	public static void main(String[] args) {
 		//createProjekt();
-
-        Session session = SESSION_FACTORY.openSession();
-        org.hibernate.Query query = session.createQuery("SELECT new map (P.nazwa AS Nazwa, P.opis AS Opis) FROM Projekt P WHERE P.id >= :id");
-        query.setParameter("id", 2);
-        List list = query.list();
-        for (int i =0; i<list.size(); i++){
-            System.out.println(list.get(i).toString());
+                    Session session = SESSION_FACTORY.openSession();
+        Queries.printStandardowe(session);
+        
+        Queries.printKryterialne(session);            
+        session.close();
         }
-
-        query = session.createQuery("SELECT k.nazwisko AS Nazwisko FROM Kierownik k inner join k.projekty as p WHERE p.nazwa = :nazwa ");
-        query.setParameter("nazwa", "MPZproj");
-        list = query.list();
-        for (int i =0; i<list.size(); i++){
-            System.out.println(list.get(i).toString());
-        }
-
-        query = session.createQuery("SELECT MAX(p.id) FROM Projekt p WHERE p.kierownik.id >= :id");
-        query.setParameter("id", 1);
-        list = query.list();
-        for (int i =0; i<list.size(); i++){
-            System.out.println(list.get(i).toString());
-        }
-	}
 
 }

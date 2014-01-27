@@ -12,7 +12,6 @@ import classes.Programista;
 import classes.Projekt;
 import classes.Zapotrzebowanie;
 import classes.Zatrudnienie;
-import org.hibernate.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,8 +20,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-//JodaTime
-import org.joda.time.DateTime;
 
 public class TestClass {
 	private static final SessionFactory SESSION_FACTORY;
@@ -104,35 +101,9 @@ public class TestClass {
     	//createOsoby();
         //createProjekt();
         Session session = SESSION_FACTORY.openSession();
-        printStandardowe(session);
+        Queries.printStandardowe(session);
         
-        printKryterialne(session);            
+        Queries.printKryterialne(session);            
         session.close();
-    }
-    private static void printStandardowe(Session session){
-        System.out.println("****************Standardowe*********************");
-        System.out.println("Nazwy i opisy projektow ktore zaczely sie po 1 stycznia 2012");
-        Query query = session.createQuery("SELECT new map (P.nazwa AS Nazwa, P.opis AS Opis) FROM Projekt P WHERE P.dataPocz >= :dataPocz");
-        DateTime dateTime = new DateTime(2012, 1, 1, 0, 0);
-        query.setDate("dataPocz", dateTime.toDate());
-            for (Object obj : query.list()) {
-                System.out.println(obj.toString());
-            }
-        System.out.println("Nazwisko osoby ktora jest kierownikiem projektu MPZproj");
-        query = session.createQuery("SELECT k.nazwisko AS Nazwisko FROM Kierownik k inner join k.projekty as p WHERE p.nazwa = :nazwa ");
-        query.setParameter("nazwa", "MPZproj");
-            for (Object obj : query.list()) {
-                System.out.println(obj.toString());
-            }
-
-        query = session.createQuery("SELECT p.zapotrzebowanie.jezykProg FROM Projekt p WHERE p.kierownik.nazwisko = :nazwisko");
-        query.setParameter("nazwisko", "Bielecki");
-            for (Object obj : query.list()) {
-                System.out.println(obj.toString());
-            }
-    }
-    
-    private static void printKryterialne(Session session){
-        System.out.println("****************Kryterialne*********************");
     }
 }
