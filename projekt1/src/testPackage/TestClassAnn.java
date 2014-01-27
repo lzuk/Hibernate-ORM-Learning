@@ -93,7 +93,7 @@ public class TestClassAnn {
 	public static void main(String[] args) {
 		//createProjekt();
                     Session session = SESSION_FACTORY.openSession();
-        Queries.printStandardowe(session);
+        Queries.printHQL(session);
         
         Queries.printKryterialne(session);            
         session.close();
