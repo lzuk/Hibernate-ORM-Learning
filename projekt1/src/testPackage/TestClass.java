@@ -103,7 +103,7 @@ public class TestClass {
         Session session = SESSION_FACTORY.openSession();
         Queries.printHQL(session);
 
-        Queries.printKryterialne(session);
+        Queries.printKryterialne(session, Queries.QueryType.XML);
         session.close();
     }
 }
