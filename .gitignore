@@ -1,0 +1,7 @@
+/projekt1/dist/
+/projekt1/build/classes/classes/*.class
+
+*.class
+
+/projekt1/build/classes/mapping
+/projekt1/build/classes
